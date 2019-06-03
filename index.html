@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo ajax</title>
+    <style>
+        * {padding:0; margin:0;}
+        ul li span {display: inline-block; width:150px; height:30px; line-height:30px; text-align:center; border:1px solid #000; margin-left:-1px;}
+    </style>
+</head>
+<body>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            type:"get",
+            url:"failLoad.json",
+            dataType:"json",
+            success:function(data) {
+                var html = "<ul>";
+                $.each(data.list,function(i,n){
+                    html += "<li>"
+                    + "<span>"
+                    + n["dire"]
+                    + "</span>"
+                    + "<span>"
+                    + n["age"]
+                    + "</span>"
+                    + "<span>"
+                    + n["name"]
+                    + "</span>"
+                    + "</li>";
+                })
+                html += "</ul>";
+                $("#div").append(html);
+            },
+            error:function() {
+                alert("加载失败");
+            }
+        })
+    </script>
+</body>
+</html>
